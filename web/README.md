@@ -1,1 +1,1 @@
-## This is the frontend for the Crat Connect app.
+## This is the frontend for the Craft Connect app.
