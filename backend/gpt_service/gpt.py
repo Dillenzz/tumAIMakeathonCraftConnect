@@ -2,15 +2,19 @@ import openai
 import os
 
 from prompt import PRE_PROMPT
+from dotenv import load_dotenv
 
 EXAMPLE_PROMT = """Firstly, I inspected the kitchen sink that was clogged. I removed the P-trap and cleaned it thoroughly, removing food debris and grease buildup. I then used a drain snake to clear any remaining blockage further down the pipe. After reassembling the P-trap, I tested the sink to ensure that the water was draining smoothly and quickly.
 Next, I addressed the leaky faucet in the bathroom. I shut off the water supply and disassembled the faucet to identify the issue. I found that the cartridge was worn out, so I replaced it with a new one. I also replaced the O-rings and seals to prevent future leaks. Once I reassembled the faucet, I turned the water supply back on and tested it for any signs of leaks.
 I then moved on to the toilet that was constantly running. I opened the tank and found that the flapper was not sealing properly, causing water to leak into the bowl. I replaced the flapper and adjusted the chain length to ensure a proper seal. I also inspected the fill valve for any malfunctions, but it seemed to be working correctly. After making the necessary adjustments, I tested the toilet by flushing it multiple times to confirm that it was no longer running continuously.
 Lastly, I inspected the water heater for any issues. I found that the temperature and pressure relief valve was leaking slightly. I replaced the valve and tested the water heater to ensure it was functioning safely and efficiently."""
 
+# Load environment variables from .env file
+load_dotenv()
+
 
 # Set up the OpenAI API client
-openai.api_key = "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"
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def talk_to_gpt(prompt):
     text = PRE_PROMPT + prompt

@@ -1,11 +1,7 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify
 from flask_cors import CORS
-import requests
-import os
-from dotenv import load_dotenv
 from gpt import talk_to_gpt
 
-load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
