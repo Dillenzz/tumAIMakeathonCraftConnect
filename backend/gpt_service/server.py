@@ -12,7 +12,7 @@ def chat_gpt():
     except Exception as e:
         return jsonify({'error': str(e)})
 
-@app.route('/desription_sentence', methods=['POST'])
+@app.route('/description_sentence', methods=['POST'])
 def chat_gpt():
     try:
         return jsonify({'message': get_description_sentence(request.json['text'])})
