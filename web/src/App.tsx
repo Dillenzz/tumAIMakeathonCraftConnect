@@ -1,7 +1,28 @@
 import { useState } from "react";
+import { postTextReport } from "./services/axiosService";
 function App() {
   const [showReportSurvey, setShowReportSurvey] = useState(false);
   const [showTextReportBox, setShowTextReportBox] = useState(false);
+  const [textAreaValue, setTextAreaValue] = useState("");
+
+  const handleSubmit = (event: React.FormEvent<EventTarget>): void => {
+    event.preventDefault();
+    console.log("submitting text: ", textAreaValue);
+    // send text area respons to backend
+    postTextReport(textAreaValue)
+      .then((response) => {
+        console.log("response: ", response.data);
+      })
+      .catch((error) => {
+        console.log("error in frontend: ", error);
+      });
+
+    // reset text area
+    setTextAreaValue("");
+
+    // close text report box
+    setShowTextReportBox(!setShowTextReportBox);
+  };
 
   return (
     <>
@@ -33,17 +54,18 @@ function App() {
             // align on top of each other
             <div>
               <p>What have you done today?</p>
-
-              <textarea style={{ height: 200, width: 500 }}></textarea>
-              <div>
-                <button
-                  onClick={() => {
-                    setShowReportSurvey(!showTextReportBox);
+              <form onSubmit={handleSubmit}>
+                <textarea
+                  style={{ height: 200, width: 500 }}
+                  value={textAreaValue}
+                  onChange={(event) => {
+                    setTextAreaValue(event.target.value);
                   }}
-                >
-                  submit
-                </button>
-              </div>
+                ></textarea>
+                <div>
+                  <input type="submit" value="Submit" />
+                </div>
+              </form>
             </div>
           )}
         </div>

@@ -11,7 +11,11 @@ CORS(app)
 
 @app.route('/gpt', methods=['POST'])
 def chat_gpt():
-    return jsonify({'message': talk_to_gpt(request.json['message'])})
+    try:
+        return jsonify({'message': talk_to_gpt(request.json['message'])})
+    
+    except Exception as e:
+        return jsonify({'error': str(e)})
     
 if __name__ == '__main__':
     app.run(debug=True)

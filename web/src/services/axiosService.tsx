@@ -2,15 +2,18 @@ import axios from "axios";
 
 // Create axios instance
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "http://localhost:5000",
   timeout: 1000,
-  headers: { "X-Custom-Header": "foobar" },
+  headers: {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+  },
 });
 
 // send the text report to the backend
 export const postTextReport = (report: string) => {
-  return axiosInstance.post("/api/report", {
-    reportType: "text",
-    report,
+  console.log("postTextReport: ", report);
+  return axiosInstance.post("/gpt", {
+    message: report,
   });
 };
