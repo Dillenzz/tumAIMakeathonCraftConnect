@@ -12,7 +12,6 @@ const axiosInstance = axios.create({
 
 // send the text report to the backend
 export const postTextReport = (report: string) => {
-  console.log("postTextReport: ", report);
   return axiosInstance.post("/gpt", {
     message: report,
   });
